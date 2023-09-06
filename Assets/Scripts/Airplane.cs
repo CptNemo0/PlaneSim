@@ -65,12 +65,12 @@ public class Airplane : MonoBehaviour
             pitch += pitchDelta;
         }
 
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Steering"))
         {
             steering = true;
         }
 
-        if(Input.GetButtonUp("Fire1"))
+        if(Input.GetButtonUp("Steering"))
         {
             steering = false;    
         }
