@@ -1,0 +1,23 @@
+.label {
+    align-items: flex-start;
+    align-self: flex-start;
+    font-size: 26px;
+    color: rgb(176, 1, 8);
+    -unity-font-style: bold;
+    -unity-text-outline-width: 0;
+    -unity-text-outline-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -unity-font: url('project://database/Assets/Fonts/CourierNew.ttf?fileID=12800000&guid=923aef0f3017c37409b5aa78dd3f56a2&type=3#CourierNew');
+    -unity-font-definition: initial;
+}

@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/LabelStyle.uss?fileID=7433441132597879392&amp;guid=513ab01cc727b564dba22b939517ced8&amp;type=3#LabelStyle" />
+    <ui:VisualElement name="Screen" style="flex-grow: 1;">
+        <ui:VisualElement name="Labels" style="flex-grow: 1; width: 300px; height: 681px;">
+            <ui:Label tabindex="-1" text="Altitude" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Altitude" class="label" style="width: 303px;" />
+            <ui:Label tabindex="-1" text="Velocity" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Velocity" class="label" style="width: 301px;" />
+            <ui:Label tabindex="-1" text="Throttle" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Throttle" class="label" style="width: 301px;" />
+            <ui:Label tabindex="-1" text="Angle of attack" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Angle" class="label" style="width: 296px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
