@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class Indicator : MonoBehaviour
 {
+    [SerializeField] public GameObject dummyGoal; //used only to test if indicator works properly
+
     //Public variables
-    private GameObject goal;
+    private GameObject goal;                      
 
     //Properties
-    public GameObject Goal { get => goal; set => goal = value; }
+    public GameObject Goal { get => goal; set => goal = value; } 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    //Unity functions
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(Goal.transform.position - transform.position);
-        //Debug.Log();
+        if (goal is not null)
+        {
+            transform.rotation = Quaternion.LookRotation(Goal.transform.position - transform.position);
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(dummyGoal.transform.position - transform.position);
+        }
     }
 }

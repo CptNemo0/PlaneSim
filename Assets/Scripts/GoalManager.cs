@@ -6,7 +6,7 @@ using UnityEngine;
 public class GoalManager : MonoBehaviour
 {
     //Public variable
-    [SerializeField] public GameObject goalPrefab;
+    [SerializeField] public GameObject ringPrefab;
     [SerializeField] public Indicator indicator;
 
     [SerializeField] public int length;
@@ -54,7 +54,7 @@ public class GoalManager : MonoBehaviour
     {
         for(int i = 0; i < points.Count; i++) 
         {
-            GameObject gameObject = Instantiate(goalPrefab);
+            GameObject gameObject = Instantiate(ringPrefab);
             gameObject.transform.name = i.ToString();
             gameObject.transform.position = points[i];
             if(i > 0)
@@ -62,21 +62,15 @@ public class GoalManager : MonoBehaviour
                 gameObject.transform.rotation = Quaternion.LookRotation(gameObject.transform.position - points[i - 1]);
             }
             Goals.Add(gameObject);
-            
         }
     }
 
-
     //Unity functions    
-    void Start()
+    void Awake()
     {
         GeneratePoints();
         InstantiateGolas();
         indicator.Goal = Goals[0];
     }
 
-    void Update()
-    {
-        
-    }
 }

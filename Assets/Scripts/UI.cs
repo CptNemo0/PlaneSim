@@ -28,7 +28,6 @@ public class UI : MonoBehaviour
     private void UpdateThrottle() 
     {
         throttle.text = "Throttle:        " + airplane.Throttle.ToString("F0") + "%";
-        
     }
 
     private void UpdateAot()
@@ -39,8 +38,6 @@ public class UI : MonoBehaviour
         {
             aot = Mathf.Abs(aot - 360.0f);
         }
-
-        //Debug.Log(aot);
         angleoat.text = "Angle of attack: " + aot.ToString("F0") + "°";
     }
 
@@ -62,5 +59,4 @@ public class UI : MonoBehaviour
         UpdateThrottle();
         UpdateAot();
     }
-
 }

@@ -8,8 +8,9 @@ using UnityEngine;
 public class Airplane : MonoBehaviour
 {
     //Public variables
-    [SerializeField] public float throttleDelta;
     [SerializeField] public float maxThrust;
+    [SerializeField] public float throttleDelta;
+    [SerializeField] public float pitchDelta;
     [SerializeField] public float responsivenessRoll;
     [SerializeField] public float responsivenessPitch;
     [SerializeField] public float responsivenessYaw;
@@ -57,11 +58,11 @@ public class Airplane : MonoBehaviour
     {
         if(Input.mouseScrollDelta.y > 0) 
         {
-            pitch -= 0.2f;
+            pitch -= pitchDelta;
         }
         else if(Input.mouseScrollDelta.y < 0)
         {
-            pitch += 0.2f;
+            pitch += pitchDelta;
         }
 
         if(Input.GetButtonDown("Fire1"))
@@ -124,10 +125,10 @@ public class Airplane : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Rb.AddForce(transform.forward * maxThrust * Throttle);
-        Rb.AddTorque(-transform.forward * roll * RollModifier);
-        Rb.AddTorque(transform.right * pitch * PitchModifier);
-        Rb.AddTorque(transform.up * yaw * YawModifier);
-        Rb.AddForce(Vector3.up * Rb.velocity.magnitude * lift);
+        Rb.AddForce(transform.forward * maxThrust * Throttle);  //thrust
+        Rb.AddTorque(-transform.forward * roll * RollModifier); //roll
+        Rb.AddTorque(transform.right * pitch * PitchModifier);  //pitch
+        Rb.AddTorque(transform.up * yaw * YawModifier);         //yaw
+        Rb.AddForce(Vector3.up * Rb.velocity.magnitude * lift); //lift
     }
 }
