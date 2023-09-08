@@ -13,7 +13,9 @@ public class IndicatorGoalConnector : MonoBehaviour
     {
         if (!goalManager.Goals[0].GetComponent<Ring>().Active)
         {
+            GameObject go = goalManager.Goals[0];
             goalManager.Goals.RemoveAt(0);
+            Destroy(go);
             indicator.Goal = goalManager.Goals[0];
         }
     }

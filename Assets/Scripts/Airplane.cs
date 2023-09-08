@@ -111,21 +111,6 @@ public class Airplane : MonoBehaviour
     }
 
     //Unity functions
-    private void OnDrawGizmos()
-    {
-        if(steering) 
-        {
-            Vector3 screenCentre = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 10.0f);
-            Vector3 pos = Input.mousePosition + new Vector3(0f, 0f, 10f);
-
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(Camera.main.transform.forward * 5 + Camera.main.ScreenToWorldPoint(screenCentre), Camera.main.transform.forward * 5 + Camera.main.ScreenToWorldPoint(pos));
-        }
-
-        Gizmos.color = Color.green;
-
-    }
-
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();
@@ -147,5 +132,17 @@ public class Airplane : MonoBehaviour
         Rb.AddTorque(transform.right * pitch * PitchModifier);  //pitch
         Rb.AddTorque(transform.up * yaw * YawModifier);         //yaw
         Rb.AddForce(Vector3.up * Rb.velocity.magnitude * lift); //lift
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (steering)
+        {
+            Vector3 screenCentre = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 10.0f);
+            Vector3 pos = Input.mousePosition + new Vector3(0f, 0f, 10f);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(Camera.main.transform.forward * 5 + Camera.main.ScreenToWorldPoint(screenCentre), Camera.main.transform.forward * 5 + Camera.main.ScreenToWorldPoint(pos));
+        }
     }
 }
