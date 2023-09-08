@@ -8,6 +8,7 @@ public class Indicator : MonoBehaviour
     private GameObject goal;                      
 
     //Properties
+
     public GameObject Goal { get => goal; set => goal = value; } 
 
     //Unity functions
