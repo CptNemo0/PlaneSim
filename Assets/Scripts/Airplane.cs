@@ -91,6 +91,8 @@ public class Airplane : MonoBehaviour
                 pitch = -1 * offset.y / (Screen.height * 0.25f);
             }
             yaw = -1 * offset.x / (Screen.width * 0.25f);
+
+
         }
         
         if(Input.GetKey(KeyCode.W))
@@ -109,6 +111,21 @@ public class Airplane : MonoBehaviour
     }
 
     //Unity functions
+    private void OnDrawGizmos()
+    {
+        if(steering) 
+        {
+            Vector3 screenCentre = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 10.0f);
+            Vector3 pos = Input.mousePosition + new Vector3(0f, 0f, 10f);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(Camera.main.transform.forward * 5 + Camera.main.ScreenToWorldPoint(screenCentre), Camera.main.transform.forward * 5 + Camera.main.ScreenToWorldPoint(pos));
+        }
+
+        Gizmos.color = Color.green;
+
+    }
+
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();

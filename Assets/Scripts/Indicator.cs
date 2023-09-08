@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Indicator : MonoBehaviour
 {
-    [SerializeField] public GameObject dummyGoal; //used only to test if indicator works properly
-
     //Public variables
     private GameObject goal;                      
 
@@ -17,11 +15,15 @@ public class Indicator : MonoBehaviour
     {
         if (goal is not null)
         {
-            transform.rotation = Quaternion.LookRotation(Goal.transform.position - transform.position);
+            float dist = Vector3.Distance(Goal.transform.position, transform.position);
+            if(dist > 15) 
+            {
+                transform.rotation = Quaternion.LookRotation(Goal.transform.position - transform.position);
+            }
         }
         else
         {
-            transform.rotation = Quaternion.LookRotation(dummyGoal.transform.position - transform.position);
+            transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, 0.0f) - transform.position);
         }
     }
 }
