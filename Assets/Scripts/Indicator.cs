@@ -13,7 +13,7 @@ public class Indicator : MonoBehaviour
     //Unity functions
     void Update()
     {
-        if (goal is not null)
+        if (!goal)
         {
             float dist = Vector3.Distance(Goal.transform.position, transform.position);
             if(dist > 15) 

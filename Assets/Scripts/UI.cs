@@ -44,12 +44,14 @@ public class UI : MonoBehaviour
     //Untity Functions
     private void Awake()
     {
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+        //VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
-        altitude = root.Q<Label>("Altitude");
-        velocity = root.Q<Label>("Velocity");
-        throttle = root.Q<Label>("Throttle");
-        angleoat = root.Q<Label>("Angle");
+
+
+       // altitude = root.Q<Label>("Altitude");
+       // velocity = root.Q<Label>("Velocity");
+      // throttle = root.Q<Label>("Throttle");
+       // angleoat = root.Q<Label>("Angle");
     }
 
     private void Update()
