@@ -66,8 +66,9 @@ public class ElevatorsAnim : MonoBehaviour
             {
                 p.Play();
             }
-            else { p.Stop(); }
-
+            else { p.Stop(); 
+            }
+            
         }
         
 

@@ -245,7 +245,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3096923569255133051, guid: 18fd83c17bff7e246ad097101b16aa2e, type: 3}
+  - {fileID: 2100000, guid: 0ae26deec145fb74c9682189b2112664, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6696,7 +6696,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3096923569255133051, guid: 18fd83c17bff7e246ad097101b16aa2e, type: 3}
+  - {fileID: 2100000, guid: 0ae26deec145fb74c9682189b2112664, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9083,7 +9083,7 @@ MonoBehaviour:
   LerpInput: 25
   ControlInput: {x: 0, y: 0, z: 0}
   Intensity: -0.05
-  MinT: -10
+  MinT: 0
   MaxT: 10
   Nose: {fileID: 1378006059}
   Bounce_: {x: 0, y: 0, z: 0}
@@ -11397,11 +11397,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198124144702787664, guid: 61bb62591466c3649bdf4905822d72f6, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.09803922
+      value: 0.5803922
       objectReference: {fileID: 0}
     - target: {fileID: 198124144702787664, guid: 61bb62591466c3649bdf4905822d72f6, type: 3}
       propertyPath: InitialModule.startColor.minColor.a
-      value: 0.27058825
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 198124144702787664, guid: 61bb62591466c3649bdf4905822d72f6, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 198124144702787664, guid: 61bb62591466c3649bdf4905822d72f6, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 198124144702787664, guid: 61bb62591466c3649bdf4905822d72f6, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.7735849
       objectReference: {fileID: 0}
     - target: {fileID: 198124144702787664, guid: 61bb62591466c3649bdf4905822d72f6, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
@@ -12949,7 +12961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198938402097657526, guid: 6f672a31584a6a748912a49c1dce2f0c, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.28235295
+      value: 0.62352943
       objectReference: {fileID: 0}
     - target: {fileID: 198938402097657526, guid: 6f672a31584a6a748912a49c1dce2f0c, type: 3}
       propertyPath: InitialModule.startColor.minColor.a
