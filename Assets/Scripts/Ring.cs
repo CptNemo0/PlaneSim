@@ -22,7 +22,6 @@ public class Ring : MonoBehaviour
     {
         if (other.CompareTag("Player")) 
         {
-            Debug.Log(transform.name);
             active = false;
         }
     }

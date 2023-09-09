@@ -24,7 +24,7 @@ public class New_AirplanePhisics : MonoBehaviour
     [Header("VECTORS")]
     [SerializeField] public  Vector3 Velocity;
     [SerializeField] private Vector3 lastVelocity;
-    [SerializeField] private Vector3 LocalVelocity;
+    [SerializeField] public Vector3 LocalVelocity;
     [SerializeField] private Vector3 LocalAngularVelocity;
     [SerializeField] public  Vector3 localGForce;
     [Space]
@@ -57,8 +57,8 @@ public class New_AirplanePhisics : MonoBehaviour
     [Space]
     [Header("THIS IS ANGLES")]
     //[SerializeField] private Vector3 LocalAngularVelocity;
-    [SerializeField] private float AngleOfAttack;
-    [SerializeField] private float AngleOfAttackYaw;
+    [SerializeField] public float AngleOfAttack;
+    [SerializeField] public float AngleOfAttackYaw;
 
     [Space]
     [Header("STEERING")]

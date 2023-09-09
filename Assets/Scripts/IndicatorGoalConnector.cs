@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,16 @@ public class IndicatorGoalConnector : MonoBehaviour
     [Header("Game objects")]
     [SerializeField] public Indicator indicator;
     [SerializeField] public GoalManager goalManager;
+    private Stopwatch stopwatch;
+    public static float elapsed;
     #endregion
+
+    private void Awake()
+    {
+        elapsed = 0.0f;
+        stopwatch = new Stopwatch();
+        stopwatch.Start();
+    }
 
     void Update()
     {
@@ -25,7 +35,8 @@ public class IndicatorGoalConnector : MonoBehaviour
             }
             else
             {
-                Time.timeScale = 0.0f;
+                stopwatch.Stop();
+                elapsed = (float)stopwatch.ElapsedMilliseconds / 1000.0f;
                 SceneManager.LoadScene(3);
                 Cursor.lockState = CursorLockMode.None;
             }
