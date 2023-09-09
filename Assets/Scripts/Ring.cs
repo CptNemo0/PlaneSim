@@ -5,14 +5,16 @@ using UnityEngine;
 public class Ring : MonoBehaviour
 {
     //Private variables
+    #region Vairables
     private bool active;
+    #endregion
 
-    //Properties
+    #region Properties
     public bool Active { get => active; set => active = value; }
-
+    #endregion
     //Unity functions
     private void Awake()
-    {
+    { 
         active = true;
     }
 

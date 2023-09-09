@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class Indicator : MonoBehaviour
 {
-    //Public variables
-    private GameObject goal;                      
+    #region Variables
 
-    //Properties
-    public GameObject Goal { get => goal; set => goal = value; } 
+    [Header("No rotate distance")]
+    [SerializeField] public int noRotateDistance;
+    private GameObject goal;
 
-    //Unity functions
+    #endregion
+
+    #region Properties
+    public GameObject Goal { get => goal; set => goal = value; }
+    #endregion
+
+    
     private void Update()
     {
         if (!(goal is null))
         {
-            float dist = Vector3.Distance(Goal.transform.position, transform.position);
-            if(dist > 15) 
+            if(Vector3.Distance(Goal.transform.position, transform.position) > noRotateDistance) 
             {
-                transform.rotation = Quaternion.LookRotation(Goal.transform.position - transform.position);
+                transform.LookAt(Goal.transform.position);  
             }
-            Debug.Log(Goal.transform.position);
         }
         else
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, 0.0f) - transform.position);
+            transform.LookAt(Vector3.zero);
         }
     }
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class IndicatorGoalConnector : MonoBehaviour
 {
-    //Public variables
+    #region Variables
+    [Header("Game objects")]
     [SerializeField] public Indicator indicator;
     [SerializeField] public GoalManager goalManager;
+    #endregion
 
-    //Unity functions
     void Update()
     {
         if (!goalManager.Goals[0].GetComponent<Ring>().Active)

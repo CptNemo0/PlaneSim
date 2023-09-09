@@ -5,29 +5,42 @@ using UnityEngine;
 
 public class GoalManager : MonoBehaviour
 {
-    //Public variable
+    #region Variables
+    [Header("Game objects")]
     [SerializeField] public GameObject ringPrefab;
     [SerializeField] public Indicator indicator;
 
+    [Space]
+    [Header("Amount of rings")]
     [SerializeField] public int length;
 
+    [Space]
+    [Header("Position of first ring")]
     [SerializeField] public int startX;
     [SerializeField] public int startY;
     [SerializeField] public int startZ;
 
+    [Space]
+    [Header("Position variables")]
     [SerializeField] public int deltaX;
     [SerializeField] public int deltaY;
 
+    [Space]
+    [Header("Distance variables")]
     [SerializeField] public int minDistance;
     [SerializeField] public int maxDistance;
+    #endregion
 
-    //Lists
+    #region Lists
     private List<GameObject> goals = new List<GameObject>();
     private List<Vector3> points = new List<Vector3>();
+    #endregion
 
+    #region Properties
     public List<GameObject> Goals { get => goals; set => goals = value; }
+    #endregion 
 
-    //My functions
+    
     private Vector3 GeneratePoint(Vector3 previous)
     {
         Vector3 newPoint = new Vector3();
@@ -46,7 +59,7 @@ public class GoalManager : MonoBehaviour
 
         for(int i = 1; i < length; i++)
         {
-            points.Add(GeneratePoint(points[i-1]));
+            points.Add(GeneratePoint(points[i - 1]));
         }
     }
 
@@ -59,7 +72,7 @@ public class GoalManager : MonoBehaviour
             gameObject.transform.position = points[i];
             if(i > 0)
             {
-                gameObject.transform.rotation = Quaternion.LookRotation(gameObject.transform.position - points[i - 1]);
+                gameObject.transform.LookAt(points[i - 1]);
             }
             Goals.Add(gameObject);
         }
