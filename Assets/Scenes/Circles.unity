@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.544408, g: 0.50700796, b: 0.52426916, a: 1}
+  m_IndirectSpecularColor: {r: 0.54437876, g: 0.5071987, b: 0.5243238, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -341,14 +341,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1022028158, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1547259730899464955, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7539411581588867744, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -396,14 +388,6 @@ PrefabInstance:
     - target: {fileID: 7615699765898768275, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
       propertyPath: m_Name
       value: Airplane
-      objectReference: {fileID: 0}
-    - target: {fileID: 8729622442999927691, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
-      propertyPath: DecreaseThrottle
-      value: 122
-      objectReference: {fileID: 0}
-    - target: {fileID: 8729622442999927691, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
-      propertyPath: IncreaseThrottle
-      value: 99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}

@@ -114,10 +114,11 @@ public class New_AirplanePhisics : MonoBehaviour
         if (Mathf.Approximately(newBounce.z, 0.0f)) newBounce.z += Random.Range(minBounce, maxBounce);
         if (Mathf.Approximately(newBounce.y, 0.0f)) newBounce.y += Random.Range(minBounce, maxBounce);
 
-       
 
 
-        ControlInput = Vector3.Lerp(ControlInput, new Vector3(-Input.GetAxis("Vertical"), Input.GetAxis("Yaw")+-Input.GetAxis("Horizontal"), Input.GetAxis("Horizontal")), LerpInput * dt);
+
+        ControlInput = Vector3.Lerp(ControlInput, new Vector3(-Input.GetAxis("Vertical"), Input.GetAxis("Yaw") + (-Input.GetAxis("Horizontal") / 10), Input.GetAxis("Horizontal") + (-Input.GetAxis("Yaw") / 10)), LerpInput * dt);
+
 
         if (Input.GetKey(IncreaseThrottle) && Throttle < 1) { Throttle += 0.5f * dt; } else if (Throttle > 1) { Throttle = 1; };
         if (Input.GetKey(DecreaseThrottle)&&Throttle>0) { Throttle -= 0.5f * dt; } else if (Throttle <0) { Throttle = 0; };
@@ -388,10 +389,10 @@ public class New_AirplanePhisics : MonoBehaviour
     void RandomMovements()
     {
 
-       // WaitForSecondsRealtime t = new WaitForSecondsRealtime(Random.Range(0.2f, 2f));
-             
-        
-        ControlInput += new Vector3(Random.Range(0, 0.3f), Random.Range(0, 0.2f), Random.Range(0, 0.7f))*Intensity;
+        // WaitForSecondsRealtime t = new WaitForSecondsRealtime(Random.Range(0.2f, 2f));
+
+
+        ControlInput += new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.2f, 0.2f), Random.Range(-0.7f, 0.7f)) * Intensity;
     }
 
 

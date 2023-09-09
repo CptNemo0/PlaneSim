@@ -8630,7 +8630,7 @@ Rigidbody:
   m_Mass: 150
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -8666,8 +8666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dfeceaf3c9c724b995ba5b2e51d867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IncreaseThrottle: 270
-  DecreaseThrottle: 269
+  IncreaseThrottle: 99
+  DecreaseThrottle: 122
   AirBrakes_KEY: 32
   Velocity: {x: 0, y: 0, z: 0}
   lastVelocity: {x: 0, y: 0, z: 0}
@@ -9082,9 +9082,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   LerpInput: 25
   ControlInput: {x: 0, y: 0, z: 0}
-  Intensity: 0
-  MinT: 0.2
-  MaxT: 5
+  Intensity: -0.05
+  MinT: -10
+  MaxT: 10
   Nose: {fileID: 1378006059}
   Bounce_: {x: 0, y: 0, z: 0}
   bounceSpeed: 1
@@ -9157,7 +9157,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7615699765898768275}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.05
   m_Height: 0.12
   m_Direction: 1
