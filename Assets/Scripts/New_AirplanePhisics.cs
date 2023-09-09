@@ -109,7 +109,7 @@ public class New_AirplanePhisics : MonoBehaviour
 
         Vector3 newBounce = new Vector3(-Input.GetAxis("Vertical"), Input.GetAxis("Yaw"), Input.GetAxis("Horizontal"));
 
-        Bounce_ = Vector3.Lerp(Bounce_, newBounce, Time.fixedDeltaTime * bounceSpeed);
+        Bounce_ = Vector3.Lerp(Bounce_, newBounce, dt * bounceSpeed);
         if (Mathf.Approximately(newBounce.x, 0.0f)) newBounce.x += Random.Range(minBounce, maxBounce);
         if (Mathf.Approximately(newBounce.z, 0.0f)) newBounce.z += Random.Range(minBounce, maxBounce);
         if (Mathf.Approximately(newBounce.y, 0.0f)) newBounce.y += Random.Range(minBounce, maxBounce);
