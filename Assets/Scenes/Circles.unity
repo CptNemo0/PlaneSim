@@ -301,14 +301,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ringPrefab: {fileID: 8415179839005082951, guid: 9c6ed3246efbed8469e511c2fe92618a, type: 3}
   indicator: {fileID: 1232136046}
-  length: 4
+  length: 10
   startX: 0
-  startY: 50
-  startZ: 100
-  deltaX: 45
-  deltaY: 30
-  minDistance: 200
-  maxDistance: 300
+  startY: 100
+  startZ: 50
+  deltaX: 15
+  deltaY: 15
+  minDistance: 20
+  maxDistance: 50
 --- !u!4 &1214071957
 Transform:
   m_ObjectHideFlags: 0
