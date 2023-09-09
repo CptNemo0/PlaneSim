@@ -11,7 +11,7 @@ public class New_AirplanePhisics : MonoBehaviour
     #region Variables
     [Header("KEY IMPUTS")]
     public KeyCode IncreaseThrottle, DecreaseThrottle;
-
+    public KeyCode AirBrakes_KEY;
     
     // Start is called before the first frame update
     [Space]
@@ -26,7 +26,7 @@ public class New_AirplanePhisics : MonoBehaviour
     [SerializeField]private Vector3 lastVelocity;
     [SerializeField]private Vector3 LocalVelocity;
     [SerializeField]private Vector3 LocalAngularVelocity;
-    [SerializeField] private Vector3 localGForce;
+    [SerializeField] public Vector3 localGForce;
     [Space]
     [Header("DRAG")]
     [SerializeField] private AnimationCurve DragForward;
@@ -66,15 +66,20 @@ public class New_AirplanePhisics : MonoBehaviour
     [SerializeField] private Vector3 TurnAcceleration = new Vector3(60, 30, 540);
    [SerializeField] private AnimationCurve SteeringCurve;
     [SerializeField] private float LerpInput = 23;
-    [SerializeField] private Vector3 ControlInput;
+    [SerializeField] public Vector3 ControlInput;
     public Vector3 EffectiveInput { get; private set; }
     [Space]
     [Header("RANDOM MOVEMENTS")]
     [SerializeField] private float Intensity;
     [SerializeField] private float MinT, MaxT;
+    public Transform Nose;
+    [Header("BOUNCE")]
+    [SerializeField] private Vector3 Bounce_;
+    [Space]
+    [SerializeField] private float bounceSpeed = 1.0f;
+    [SerializeField] private float minBounce = -0.4f;
+    [SerializeField] private float maxBounce = 0.4f; 
 
-
-   
 
     #endregion
     void Awake()
@@ -102,11 +107,21 @@ public class New_AirplanePhisics : MonoBehaviour
            ControlInput[i] = Mathf.Clamp(ControlInput[i], -minMax, minMax);
         }
 
-        ControlInput = Vector3.Lerp(ControlInput, new Vector3(-Input.GetAxis("Vertical"), Input.GetAxis("Yaw"), Input.GetAxis("Horizontal")), LerpInput * dt);
+         Vector3 newBounce = new Vector3(-Input.GetAxis("Vertical"), Input.GetAxis("Yaw"), Input.GetAxis("Horizontal"));
+
+        Bounce_ = Vector3.Lerp(Bounce_, newBounce, Time.fixedDeltaTime * bounceSpeed);
+        if (Mathf.Approximately(newBounce.x, 0.0f)) newBounce.x += Random.Range(minBounce, maxBounce);
+        if (Mathf.Approximately(newBounce.z, 0.0f)) newBounce.z += Random.Range(minBounce, maxBounce);
+        if (Mathf.Approximately(newBounce.y, 0.0f)) newBounce.y += Random.Range(minBounce, maxBounce);
+
+       
+
+
+        ControlInput = Vector3.Lerp(ControlInput, new Vector3(-Input.GetAxis("Vertical"), Input.GetAxis("Yaw")+-Input.GetAxis("Horizontal"), Input.GetAxis("Horizontal")), LerpInput * dt);
 
         if (Input.GetKey(IncreaseThrottle) && Throttle < 1) { Throttle += 0.5f * dt; } else if (Throttle > 1) { Throttle = 1; };
         if (Input.GetKey(DecreaseThrottle)&&Throttle>0) { Throttle -= 0.5f * dt; } else if (Throttle <0) { Throttle = 0; };
-
+        if (Input.GetKey(AirBrakes_KEY)) { AirbrakeDeployed = true; } else { AirbrakeDeployed = false; }
 
         #endregion
 

@@ -1,0 +1,63 @@
+# Blender MTL File: 'uploads_files_3205489_Joint+Strike.blend'
+# Material Count: 5
+
+newmtl Body
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Body Normal.jpg
+map_Kd R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Body Diffuse.jpg
+map_Ke R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Body Illumination.jpg
+map_Ks R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Body Specular.jpg
+map_Ns R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Body Reflection.jpg
+
+newmtl Interior
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Interior Normal.jpg
+map_Kd R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Interior Diffuse.jpg
+map_Ke R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Interior Illumination.jpg
+map_Ks R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Interior Specular.jpg
+map_Ns R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Joint Strike Interior Reflection.jpg
+
+newmtl Jet_Glass
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl None
+Ns 500
+Ka 0.8 0.8 0.8
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+
+newmtl Pilot
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Pilot Normal.jpg
+map_Kd R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Pilot Diffuse .jpg
+map_Ks R:\\UnityPackage\\F-22 raptor\\uploads_files_3205489_Textures\\Pilot Specular.jpg
