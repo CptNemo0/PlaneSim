@@ -9,7 +9,7 @@ public class New_AirplanePhisics : MonoBehaviour
 
 
     #region Variables
-    [Header("KEY IMPUTS")]
+    [Header("KEY INPUTS")]
     public KeyCode IncreaseThrottle, DecreaseThrottle;
     public KeyCode AirBrakes_KEY;
     
@@ -22,11 +22,11 @@ public class New_AirplanePhisics : MonoBehaviour
     [Header("FORCES")]
     [Space]
     [Header("VECTORS")]
-    [SerializeField]public Vector3 Velocity;
-    [SerializeField]private Vector3 lastVelocity;
-    [SerializeField]private Vector3 LocalVelocity;
-    [SerializeField]private Vector3 LocalAngularVelocity;
-    [SerializeField] public Vector3 localGForce;
+    [SerializeField] public  Vector3 Velocity;
+    [SerializeField] private Vector3 lastVelocity;
+    [SerializeField] private Vector3 LocalVelocity;
+    [SerializeField] private Vector3 LocalAngularVelocity;
+    [SerializeField] public  Vector3 localGForce;
     [Space]
     [Header("DRAG")]
     [SerializeField] private AnimationCurve DragForward;
@@ -37,7 +37,7 @@ public class New_AirplanePhisics : MonoBehaviour
     [SerializeField] private AnimationCurve DragBottom;
     [SerializeField] private AnimationCurve InducedDragCurve;
     [SerializeField] private AnimationCurve RudderInducedDragCurve;
-    [SerializeField]Vector3 angularDrag;
+    [SerializeField] Vector3 angularDrag;
 
     [SerializeField] private bool AirbrakeDeployed, FlapsDeployed;
     [SerializeField] private float airbrakeDrag, flapsDrag, inducedDrag, flapsLiftPower, flapsAOABias;
@@ -64,7 +64,7 @@ public class New_AirplanePhisics : MonoBehaviour
     [Header("STEERING")]
     [SerializeField] private Vector3 TurnSpeed = new Vector3(30, 15, 270);
     [SerializeField] private Vector3 TurnAcceleration = new Vector3(60, 30, 540);
-   [SerializeField] private AnimationCurve SteeringCurve;
+    [SerializeField] private AnimationCurve SteeringCurve;
     [SerializeField] private float LerpInput = 23;
     [SerializeField] public Vector3 ControlInput;
     public Vector3 EffectiveInput { get; private set; }
@@ -107,7 +107,7 @@ public class New_AirplanePhisics : MonoBehaviour
            ControlInput[i] = Mathf.Clamp(ControlInput[i], -minMax, minMax);
         }
 
-         Vector3 newBounce = new Vector3(-Input.GetAxis("Vertical"), Input.GetAxis("Yaw"), Input.GetAxis("Horizontal"));
+        Vector3 newBounce = new Vector3(-Input.GetAxis("Vertical"), Input.GetAxis("Yaw"), Input.GetAxis("Horizontal"));
 
         Bounce_ = Vector3.Lerp(Bounce_, newBounce, Time.fixedDeltaTime * bounceSpeed);
         if (Mathf.Approximately(newBounce.x, 0.0f)) newBounce.x += Random.Range(minBounce, maxBounce);

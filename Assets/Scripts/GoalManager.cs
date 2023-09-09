@@ -66,7 +66,7 @@ public class GoalManager : MonoBehaviour
     }
 
     //Unity functions    
-    void Awake()
+    private void Awake()
     {
         GeneratePoints();
         InstantiateGolas();

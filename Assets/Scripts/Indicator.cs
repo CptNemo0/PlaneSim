@@ -8,19 +8,19 @@ public class Indicator : MonoBehaviour
     private GameObject goal;                      
 
     //Properties
-
     public GameObject Goal { get => goal; set => goal = value; } 
 
     //Unity functions
-    void Update()
+    private void Update()
     {
-        if (!goal)
+        if (!(goal is null))
         {
             float dist = Vector3.Distance(Goal.transform.position, transform.position);
             if(dist > 15) 
             {
                 transform.rotation = Quaternion.LookRotation(Goal.transform.position - transform.position);
             }
+            Debug.Log(Goal.transform.position);
         }
         else
         {
