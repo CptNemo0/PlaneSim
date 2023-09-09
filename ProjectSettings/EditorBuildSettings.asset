@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: d030cbc0336431d498c67b842e3c5ff6
+  - enabled: 1
+    path: Assets/Scenes/ChoseGamemode.unity
+    guid: 6c5bb62dba168f14faf17dd31fdcd9b8
+  - enabled: 1
+    path: Assets/Scenes/Circles.unity
+    guid: d183366908fd8c242a2b0bd0e74f3a04
+  - enabled: 1
+    path: Assets/Scenes/FinishedRingTrack.unity
+    guid: 8892d292632aa27489d99c0053c9f103
   m_configObjects: {}

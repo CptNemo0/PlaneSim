@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ringPrefab: {fileID: 8415179839005082951, guid: 9c6ed3246efbed8469e511c2fe92618a, type: 3}
   indicator: {fileID: 1232136046}
-  length: 10
+  length: 4
   startX: 0
   startY: 50
   startZ: 100
