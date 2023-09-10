@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class New_HUD : MonoBehaviour
 {
@@ -13,8 +14,12 @@ public class New_HUD : MonoBehaviour
     [SerializeField] PitchLadderBeh pitchLadder;
     [SerializeField] YawLadder yawLadder;
     New_AirplanePhisics plane;
-
-
+    [Space]
+    [SerializeField] private Image ThrottleUI;
+    [SerializeField] TextMeshProUGUI Throttle_Text;
+    [Space]  
+    [SerializeField] TextMeshProUGUI AirSpeed_Text;
+    [SerializeField] TextMeshProUGUI Altitude_Text;
     // Start is called before the first frame update
     void Awake()
     {
@@ -83,9 +88,10 @@ public class New_HUD : MonoBehaviour
                 hudCenterGO.SetActive(false);
             }
 
-        
-
-
+        ThrottleUI.fillAmount = plane.Throttle;
+        Throttle_Text.text = (Mathf.RoundToInt( plane.Throttle * 100)).ToString()+"%";
+        AirSpeed_Text.text = (Mathf.RoundToInt(plane.LocalVelocity.z)).ToString();
+        Altitude_Text.text = ((int)plane.transform.position.y).ToString();
     }
 
     void UpdateVelocityMarker()

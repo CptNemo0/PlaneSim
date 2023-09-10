@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class YawLadder : MonoBehaviour
 {
     [SerializeField] public GameObject barYawPrefab;
     [SerializeField] public int barInterval;
     [SerializeField] public int range;
+    [SerializeField] public TextMeshProUGUI Deg_Text;
     
 
     struct Bar
@@ -90,6 +92,7 @@ public class YawLadder : MonoBehaviour
             default:
                 //bar.SetText(angle, string.Empty);
                 bar.SetText(0, string.Empty);
+                
                 break;
         }
         
@@ -103,9 +106,9 @@ public class YawLadder : MonoBehaviour
         {
             angle = Mathf.Abs(angle - 360);
         }
-
+       
         return angle;
-
+       
         //return angle > 180 ? angle - 360 : angle;
     }
     float GetPosition(float angle)
@@ -135,14 +138,14 @@ public class YawLadder : MonoBehaviour
             float angle = Mathf.DeltaAngle(yaw, bar.angle);
             print(ConvertAngle(yaw));
             float position = GetPosition(ConvertAngle(angle));
-
+            Deg_Text.text = string.Format("{0:F0}°",yaw);
             if (Mathf.Abs(angle) < 90f && position >= transform.rect.xMin && position <= transform.rect.xMax)
             {
                 //if bar position is within bounds
                 var pos = bar.transform.localPosition;
                 bar.transform.localPosition = new Vector3(position, pos.y, pos.z);
                 bar.transform.gameObject.SetActive(true);
-
+                
                 if (bar.bar != null)
                 {
                     bar.bar.UpdateRoll(roll);
