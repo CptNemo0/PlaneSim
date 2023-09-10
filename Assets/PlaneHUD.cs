@@ -11,6 +11,7 @@ public class PlaneHUD : MonoBehaviour
     [SerializeField] Transform hudCenter;
     [SerializeField] Transform velocityMark;
     [SerializeField] PitchLadderBeh pitchLadder;
+    [SerializeField] YawLadder yawLadder;
     New_AirplanePhisics plane;
 
 
@@ -58,8 +59,12 @@ public class PlaneHUD : MonoBehaviour
         if (pitchLadder != null)
         {
             pitchLadder.SetPlane(plane);        
-                pitchLadder.SetCamera(cam);
-            
+            pitchLadder.SetCamera(cam);
+        }
+
+        if (yawLadder != null)
+        {
+            yawLadder.SetPlane(plane);
         }
     }
 

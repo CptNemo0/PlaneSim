@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PitchLadderBeh : MonoBehaviour
+public class YawLadder : MonoBehaviour
 {
-    [SerializeField]
-    GameObject pitchHorizonPrefab;
-    [SerializeField]
-    GameObject pitchPositivePrefab;
-    [SerializeField]
-    GameObject pitchNegativePrefab;
-    [SerializeField]
-    int barInterval;
-    [SerializeField]
-    int range;
-
+    [SerializeField] public GameObject barYawPrefab;
+    [SerializeField] public int barInterval;
+    [SerializeField] public int range;
+    
     struct Bar
     {
         public RectTransform transform;
@@ -33,31 +26,7 @@ public class PitchLadderBeh : MonoBehaviour
     List<Bar> bars;
     new Camera camera;
     Transform planeTransform;
-    
-    void Start()
-    {
-        transform = GetComponent<RectTransform>();
-        bars = new List<Bar>();
 
-        for (int i = -range; i <= range; i++)
-        {
-            if (i % barInterval != 0) continue;
-
-            if (i == 0 || i == 90 || i == -90)
-            {
-                CreateBar(i, pitchHorizonPrefab);
-            }
-            else if (i > 0)
-            {
-                CreateBar(i, pitchPositivePrefab);
-            }
-            else
-            {
-                CreateBar(i, pitchNegativePrefab);
-            }
-        }
-    }
-    
     public void SetCamera(Camera camera)
     {
         this.camera = Camera.main;
@@ -73,37 +42,20 @@ public class PitchLadderBeh : MonoBehaviour
         var barGO = Instantiate(prefab, transform);
         var barTransform = barGO.GetComponent<RectTransform>();
         var bar = barGO.GetComponent<PitchBar>();
-        int TextAngle = (angle + 180) % 360;
-
-
-
-
-
-        if (TextAngle < 0)
-        {
-            if (bar != null) bar.SetNumber(TextAngle += 360);
-        }
-        
-            if (bar != null) bar.SetNumber(TextAngle -= 180);
-        
-
-        
-
+        bar.SetNumber(angle);
         bars.Add(new Bar(barTransform, angle, bar));
     }
 
-
     float ConvertAngle(float angle)
     {
-        //convert 0 - 360 range to -180 - 180
-        if (angle > 180)
+        //convert 0 - 360 range to -90 - 90
+        if (angle > 90)
         {
-            angle -= 360f;
+            angle = Mathf.Abs(angle - 360);
         }
 
         return angle;
     }
-
     float GetPosition(float angle)
     {
         float fov = camera.fieldOfView;
@@ -114,32 +66,52 @@ public class PitchLadderBeh : MonoBehaviour
     {
         return (Mathf.Tan(angle * Mathf.Deg2Rad) / Mathf.Tan(fov / 2 * Mathf.Deg2Rad)) * pixelHeight / 2;
     }
-   
-    void LateUpdate()
+
+    void Start()
+    {
+        transform = GetComponent<RectTransform>();
+        bars = new List<Bar>();
+
+        for (int i = -range; i <= range; i++)
+        {
+            if (i % barInterval != 0)
+            {
+                continue;
+            }
+            else
+            {
+                CreateBar(i, barYawPrefab);
+            }
+        }
+    }
+
+    private void LateUpdate()
     {
         this.camera = Camera.main;
         if (camera == null) return;
-
-        //pitch == rotation around x axis
-        //roll == rotation around z axis
-        float pitch = -planeTransform.eulerAngles.x;
+        
         float roll = planeTransform.eulerAngles.z;
+        float yaw = planeTransform.eulerAngles.y;
 
-        transform.localEulerAngles = new Vector3(0, 0, -roll);
+        transform.localEulerAngles = new Vector3(0, 0, roll);
 
-        foreach (var bar in bars)
+        foreach(var bar in bars) 
         {
-            float angle = Mathf.DeltaAngle(pitch, bar.angle);
+            float angle = Mathf.DeltaAngle(yaw, bar.angle);
+            print(ConvertAngle(yaw));
             float position = GetPosition(ConvertAngle(angle));
 
-            if (Mathf.Abs(angle) < 90f && position >= transform.rect.yMin && position <= transform.rect.yMax)
+            if (Mathf.Abs(angle) < 90f && position >= transform.rect.xMin && position <= transform.rect.xMax)
             {
                 //if bar position is within bounds
                 var pos = bar.transform.localPosition;
-                bar.transform.localPosition = new Vector3(pos.x, position, pos.z);
+                bar.transform.localPosition = new Vector3(position, pos.y, pos.z);
                 bar.transform.gameObject.SetActive(true);
 
-                if (bar.bar != null) bar.bar.UpdateRoll(roll);
+                if (bar.bar != null)
+                {
+                    bar.bar.UpdateRoll(roll);
+                }
             }
             else
             {
@@ -147,5 +119,4 @@ public class PitchLadderBeh : MonoBehaviour
             }
         }
     }
-   
 }

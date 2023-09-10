@@ -16,20 +16,20 @@ MonoBehaviour:
   labelColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   position: {x: 0.20140816, y: 0.15691489}
   mainCloud:
-    profile: {fileID: 11400000, guid: 0a75bc554252c874d8da78b37754966f, type: 2}
+    profile: {fileID: 11400000, guid: 8310f06feef64744f8874637087be25c, type: 2}
     densityAdjustment: -1
     scattering:
       IsOverride: 1
-      Value: 0.603
+      Value: 0.449
     shading:
       IsOverride: 1
-      Value: 0.533
+      Value: 0.401
     shadingDistance:
       IsOverride: 1
       Value: 0.906
   layeredCloud:
     profile: {fileID: 11400000, guid: 46cde27715387424c8eba906aa54f3e9, type: 2}
-    densityAdjustment: 0
+    densityAdjustment: -0.624
     scattering:
       IsOverride: 0
       Value: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     shadingDistance:
       IsOverride: 0
       Value: 0
-  cloudIntensityAdjustment: 0.59
+  cloudIntensityAdjustment: -0.293
   intensityOverride: 1
   intensity: 1
   lightColor: {r: 0, g: 0, b: 0, a: 0}

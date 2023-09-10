@@ -10,23 +10,17 @@ public class HUD : MonoBehaviour
     [SerializeField] public TextMeshProUGUI altitude;
     [SerializeField] public TextMeshProUGUI velocity;
     [SerializeField] public TextMeshProUGUI throttle;
-    [SerializeField] public TextMeshProUGUI aoa;
 
     private New_AirplanePhisics airplane;
     #endregion
 
     private void UpdateTexts()
     {
-        altitude.text = String.Format("Altitude: {0}m", (int)airplane.transform.position.y);
+        altitude.text = ((int)airplane.transform.position.y).ToString();
         velocity.text = String.Format("Velocity: {0}m/s", (int)airplane.LocalVelocity.z);
         throttle.text = String.Format("Throttle: {0}%", Math.Round(airplane.Throttle*100));
 
         int Angle = ((int)airplane.transform.eulerAngles.x + 180) % 360;
-
-        if (Angle < 0) {
-            aoa.text = String.Format("AOA: {0}°", -(Angle += 180));
-        }
-        aoa.text = String.Format("AOA: {0}°", -(Angle-=180));
     }
 
     // Start is called before the first frame update

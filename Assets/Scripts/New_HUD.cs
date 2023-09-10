@@ -11,10 +11,8 @@ public class New_HUD : MonoBehaviour
     [SerializeField] Transform hudCenter;
     [SerializeField] Transform velocityMark;
     [SerializeField] PitchLadderBeh pitchLadder;
+    [SerializeField] YawLadder yawLadder;
     New_AirplanePhisics plane;
-
-
-
 
 
     // Start is called before the first frame update
@@ -58,7 +56,12 @@ public class New_HUD : MonoBehaviour
         {
             pitchLadder.SetPlane(plane);
             pitchLadder.SetCamera(cam);
+        }
 
+        if (yawLadder != null)
+        {
+            yawLadder.SetPlane(plane);
+            yawLadder.SetCamera(cam);
         }
     }
 
