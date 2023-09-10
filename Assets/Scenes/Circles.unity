@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 286.45624, g: 402.8905, b: 727.64465, a: 1}
+  m_IndirectSpecularColor: {r: 286.1157, g: 401.89114, b: 725.0675, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1759,6 +1759,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1974208684}
     m_Modifications:
+    - target: {fileID: 3409623252084482395, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: range
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409623252084482395, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: barSpacing
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409623252084482395, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: barInterval
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409623252084482395, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: maxBarSpacing
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409623252084482395, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: minBarSpacing
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3689020757287031090, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1857,11 +1877,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6653600614851410722, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2001.5719
+      value: 736.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653600614851410722, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 167
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653600614851410722, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2528173
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653600614851410722, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2528173
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653600614851410722, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2528173
       objectReference: {fileID: 0}
     - target: {fileID: 6653600614851410722, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 38.991333
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653600614851410722, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 179.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94d5ff005bfcde74998ab6e3da757eb9, type: 3}

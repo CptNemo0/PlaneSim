@@ -27,15 +27,15 @@ RectTransform:
   m_GameObject: {fileID: 3867873048573356967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
+  m_LocalScale: {x: 0.066192, y: 0.066192, z: 0.066192}
   m_Children: []
   m_Father: {fileID: 3689020757287031090}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.9, y: 14.7}
-  m_SizeDelta: {x: 578.7932, y: 348.9905}
+  m_AnchoredPosition: {x: 0.9, y: 25.1}
+  m_SizeDelta: {x: 1335.46, y: 615.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5112680366703816798
 CanvasRenderer:
@@ -69,16 +69,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 923aef0f3017c37409b5aa78dd3f56a2, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
+    m_BestFit: 1
+    m_MinSize: 5
     m_MaxSize: 300
-    m_Alignment: 0
-    m_AlignByGeometry: 0
+    m_Alignment: 4
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 123
+  m_Text: NW
 --- !u!1 &4698005763225520681
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ RectTransform:
   m_GameObject: {fileID: 5424041610331883722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.4635, y: 3.4635, z: 3.4635}
   m_Children:
   - {fileID: 8405905266997404687}
   - {fileID: 1919524112386025351}
@@ -190,7 +190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -2.2172, y: -43.678}
   m_SizeDelta: {x: 2, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3689020757287031100
@@ -215,3 +215,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texts:
   - {fileID: 1545786518449212752}
+  Stick: {fileID: 8405905266997404687}
+  Min: 9
+  Max: 20

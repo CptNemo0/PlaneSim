@@ -8,6 +8,7 @@ public class YawLadder : MonoBehaviour
     [SerializeField] public int barInterval;
     [SerializeField] public int range;
     
+
     struct Bar
     {
         public RectTransform transform;
@@ -26,7 +27,23 @@ public class YawLadder : MonoBehaviour
     List<Bar> bars;
     new Camera camera;
     Transform planeTransform;
+    void Start()
+    {
+        
 
+        transform = GetComponent<RectTransform>();
+        bars = new List<Bar>();
+       
+
+        for (int i = 0; i < range; i++)
+        {
+            if (i % barInterval != 0) continue;
+
+           
+                CreateBar(i, barYawPrefab);
+            
+        }
+    }
     public void SetCamera(Camera camera)
     {
         this.camera = Camera.main;
@@ -42,22 +59,37 @@ public class YawLadder : MonoBehaviour
         var barGO = Instantiate(prefab, transform);
         var barTransform = barGO.GetComponent<RectTransform>();
         var bar = barGO.GetComponent<YawBar>();
-        switch(angle)
+        
+
+        switch (angle)
         {
             case 0:
                 bar.SetText(angle, "N");
                 break;
+            case 45:
+                bar.SetText(angle, "NE");
+                break;
             case 90:
                 bar.SetText(angle, "E");
+                break;
+            case 135:
+                bar.SetText(angle, "SE");
                 break;
             case 180:
                 bar.SetText(angle, "S");
                 break;
+            case 225:
+                bar.SetText(angle, "SW");
+                break;
             case 270:
                 bar.SetText(angle, "W");
                 break;
+            case 315:
+                bar.SetText(angle, "NW");
+                break;
             default:
-                bar.SetText(angle, string.Empty);
+                //bar.SetText(angle, string.Empty);
+                bar.SetText(0, string.Empty);
                 break;
         }
         
@@ -73,6 +105,8 @@ public class YawLadder : MonoBehaviour
         }
 
         return angle;
+
+        //return angle > 180 ? angle - 360 : angle;
     }
     float GetPosition(float angle)
     {
@@ -85,17 +119,7 @@ public class YawLadder : MonoBehaviour
         return (Mathf.Tan(angle * Mathf.Deg2Rad) / Mathf.Tan(fov / 2 * Mathf.Deg2Rad)) * pixelHeight / 2;
     }
 
-    void Start()
-    {
-        transform = GetComponent<RectTransform>();
-        bars = new List<Bar>();
-
-        for (int i = 0; i < 360; i += 10)
-        {
-            CreateBar(i, barYawPrefab);
-        }
-    }
-
+    
     private void LateUpdate()
     {
         this.camera = Camera.main;
@@ -104,7 +128,7 @@ public class YawLadder : MonoBehaviour
         float roll = planeTransform.eulerAngles.z;
         float yaw = planeTransform.eulerAngles.y;
 
-        transform.localEulerAngles = new Vector3(0, 0, roll);
+        //transform.localEulerAngles = new Vector3(0, 0, roll);
 
         foreach(var bar in bars) 
         {

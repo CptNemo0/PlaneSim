@@ -9,7 +9,10 @@ public class YawBar : MonoBehaviour
     List<Text> texts;
 
     List<Transform> transforms;
-
+    [SerializeField]
+    RectTransform Stick;
+    [SerializeField]
+    float Min, Max;
     void Start()
     {
         transforms = new List<Transform>();
@@ -29,10 +32,13 @@ public class YawBar : MonoBehaviour
                 if (number != 0)
                 {
                     text.text = number.ToString();
+                    Stick.sizeDelta = new Vector2(Stick.sizeDelta.x, Max);
                 }
                 else
                 {
                     text.text = "";
+                    Stick.sizeDelta = new Vector2(Stick.sizeDelta.x, Min);
+
                 }
             }
         }
@@ -49,7 +55,7 @@ public class YawBar : MonoBehaviour
     {
         foreach (var transform in transforms)
         {
-            transform.localEulerAngles = new Vector3(0, 0, angle);
+            //transform.localEulerAngles = new Vector3(0, 0, angle);
         }
     }
 }
