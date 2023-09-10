@@ -62,7 +62,7 @@ public class ElevatorsAnim : MonoBehaviour
 
         foreach (ParticleSystem p in Gf_particles)
         {
-            if (physics.localGForce.y > 10|| physics.localGForce.z < -4)
+            if (physics.localGForce.y > 15|| physics.localGForce.z < -5)
             {
                 p.Play();
             }

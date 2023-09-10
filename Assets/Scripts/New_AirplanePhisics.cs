@@ -78,8 +78,12 @@ public class New_AirplanePhisics : MonoBehaviour
     [Space]
     [SerializeField] private float bounceSpeed = 1.0f;
     [SerializeField] private float minBounce = -0.4f;
-    [SerializeField] private float maxBounce = 0.4f; 
-
+    [SerializeField] private float maxBounce = 0.4f;
+    [Space]
+    [Header("OVERSPEED")]
+    [SerializeField] private float MaxSpeed = 50;
+    [SerializeField] float gLimit;
+    [SerializeField] float gLimitPitch;
 
     #endregion
     void Awake()
@@ -138,6 +142,7 @@ public class New_AirplanePhisics : MonoBehaviour
         UpdateAngularDrag();
         CalculateState(dt);
         InvokeRepeating("RandomMovements", Random.Range(MinT, MaxT), Random.Range(MinT, MaxT));
+        LimitOverSpeed();
 
         #endregion
 
@@ -155,8 +160,8 @@ public class New_AirplanePhisics : MonoBehaviour
     {
         var invRotation = Quaternion.Inverse(rig.rotation);
         Velocity = rig.velocity;
-        LocalVelocity = invRotation * Velocity;  //transform world velocity into local space
-        LocalAngularVelocity = invRotation * rig.angularVelocity;  //transform into local space
+        LocalVelocity = invRotation * Velocity; 
+        LocalAngularVelocity = invRotation * rig.angularVelocity;  
 
         CalculateAngleOfAttack();
     }
@@ -203,19 +208,18 @@ public class New_AirplanePhisics : MonoBehaviour
 
     Vector3 CalculateLift(float angleOfAttack, Vector3 rightAxis, float liftPower, AnimationCurve aoaCurve, AnimationCurve inducedDragCurve)
     {
-        var liftVelocity = Vector3.ProjectOnPlane(LocalVelocity, rightAxis);    //project velocity onto YZ plane
-        var v2 = liftVelocity.sqrMagnitude;                                     //square of velocity
+        var liftVelocity = Vector3.ProjectOnPlane(LocalVelocity, rightAxis);    
+        var v2 = liftVelocity.sqrMagnitude;                                     
 
-        //lift = velocity^2 * coefficient * liftPower
-        //coefficient varies with AOA
+        
         var liftCoefficient = aoaCurve.Evaluate(angleOfAttack * Mathf.Rad2Deg);
         var liftForce = v2 * liftCoefficient * liftPower;
 
-        //lift is perpendicular to velocity
+        
         var liftDirection = Vector3.Cross(liftVelocity.normalized, rightAxis);
         var lift = liftDirection * liftForce;
 
-        //induced drag varies with square of lift coefficient
+        
         var dragForce = liftCoefficient * liftCoefficient;
         var dragDirection = -liftVelocity.normalized;
         var inducedDrag = dragDirection * v2 * dragForce * this.inducedDrag * inducedDragCurve.Evaluate(Mathf.Max(0, LocalVelocity.z));
@@ -229,27 +233,27 @@ public class New_AirplanePhisics : MonoBehaviour
     void UpdateAngularDrag()
     {
         var av = LocalAngularVelocity;
-        var drag = av.sqrMagnitude * -av.normalized;    //squared, opposite direction of angular velocity
-        rig.AddRelativeTorque(Vector3.Scale(drag, angularDrag), ForceMode.Acceleration);  //ignore rigidbody mass
+        var drag = av.sqrMagnitude * -av.normalized;   
+        rig.AddRelativeTorque(Vector3.Scale(drag, angularDrag), ForceMode.Acceleration); 
     }
     void UpdateDrag()
     {
         var lv = LocalVelocity;
-        var lv2 = lv.sqrMagnitude;  //velocity squared
+        var lv2 = lv.sqrMagnitude;  
 
         float airbrakeDrag = AirbrakeDeployed ? this.airbrakeDrag : 0;
         float flapsDrag = FlapsDeployed ? this.flapsDrag : 0;
 
-        //calculate coefficient of drag depending on direction on velocity
+       
         var coefficient = Scale6(
             lv.normalized,
             DragRight.Evaluate(Mathf.Abs(lv.x)), DragLeft.Evaluate(Mathf.Abs(lv.x)),
             DragTop.Evaluate(Mathf.Abs(lv.y)), DragBottom.Evaluate(Mathf.Abs(lv.y)),
-            DragForward.Evaluate(Mathf.Abs(lv.z)) + airbrakeDrag + flapsDrag,   //include extra drag for forward coefficient
+            DragForward.Evaluate(Mathf.Abs(lv.z)) + airbrakeDrag + flapsDrag,   
             DragBack.Evaluate(Mathf.Abs(lv.z))
         );
 
-        var drag = coefficient.magnitude * lv2 * -lv.normalized;    //drag is opposite direction of velocity
+        var drag = coefficient.magnitude * lv2 * -lv.normalized;    
 
         rig.AddRelativeForce(drag);
     }
@@ -258,17 +262,49 @@ public class New_AirplanePhisics : MonoBehaviour
 
 
 
-    //I haven't finished this region
+    
     #region G force Class
+    
+    float CalculateGLimiter(Vector3 controlInput, Vector3 maxAngularVelocity)
+    {
+        if (controlInput.magnitude < 0.01f)
+        {
+            return 1;
+        }
+
+        
+        var maxInput = controlInput.normalized;
+
+        var limit = CalculateGForceLimit(maxInput);
+        var maxGForce = CalculateGForce(Vector3.Scale(maxInput, maxAngularVelocity), LocalVelocity);
+
+        if (maxGForce.magnitude > limit.magnitude)
+        {
+            
+            return limit.magnitude / maxGForce.magnitude;
+        }
+
+        return 1;
+    }
+    Vector3 CalculateGForce(Vector3 angularVelocity, Vector3 velocity)
+    {
+        
+        return Vector3.Cross(angularVelocity, velocity);
+    }
+    Vector3 CalculateGForceLimit(Vector3 input)
+    {
+        return Scale6(input,
+            gLimit, gLimitPitch,    
+            gLimit, gLimit,         
+            gLimit, gLimit          
+        ) * 9.81f;
+    }
     void CalculateGForce(float dt)
     {
         var invRotation = Quaternion.Inverse(rig.rotation);
         var acceleration = (Velocity - lastVelocity) / dt;
         localGForce = invRotation * acceleration;
         lastVelocity = Velocity;
-
-
-
     }
     #endregion
 
@@ -320,35 +356,14 @@ public class New_AirplanePhisics : MonoBehaviour
     #region Steering
 
 
-    void UpdateSteering_v1(float dt) {
-
-        var speed = Mathf.Max(0, LocalVelocity.z);
-        var steeringPower = SteeringCurve.Evaluate(speed);
-
-        var TargetAV = Vector3.Scale(ControlInput, TurnSpeed * steeringPower);
-        var av = LocalAngularVelocity * Mathf.Rad2Deg;
-
-
-        var correction = new Vector3(
-
-            CalculateSteering(dt, av.x, TargetAV.x, TurnAcceleration.x * steeringPower),
-            CalculateSteering(dt, av.y, TargetAV.y, TurnAcceleration.y * steeringPower),
-            CalculateSteering(dt, av.z, TargetAV.z, TurnAcceleration.z * steeringPower)
-            );
-
-        rig.AddRelativeTorque(correction * Mathf.Deg2Rad, ForceMode.VelocityChange);
-
-
-    }
-
     void UpdateSteering(float dt)
     {
         var speed = Mathf.Max(0, LocalVelocity.z);
         var steeringPower = SteeringCurve.Evaluate(speed);
 
-        //var gForceScaling = CalculateGLimiter(controlInput, turnSpeed * Mathf.Deg2Rad * steeringPower);
+        var gForceScaling = CalculateGLimiter(ControlInput, TurnSpeed * Mathf.Deg2Rad * steeringPower);
 
-        var targetAV = Vector3.Scale(ControlInput, TurnSpeed * steeringPower);
+        var targetAV = Vector3.Scale(ControlInput, TurnSpeed * steeringPower * gForceScaling);
         var av = LocalAngularVelocity * Mathf.Rad2Deg;
 
         var correction = new Vector3(
@@ -357,7 +372,7 @@ public class New_AirplanePhisics : MonoBehaviour
             CalculateSteering(dt, av.z, targetAV.z, TurnAcceleration.z * steeringPower)
         );
 
-        rig.AddRelativeTorque(correction * Mathf.Deg2Rad, ForceMode.VelocityChange);    //ignore rigidbody mass
+        rig.AddRelativeTorque(correction * Mathf.Deg2Rad, ForceMode.VelocityChange);    
 
         var correctionInput = new Vector3(
             Mathf.Clamp((targetAV.x - av.x) / TurnAcceleration.x, -1, 1),
@@ -365,7 +380,7 @@ public class New_AirplanePhisics : MonoBehaviour
             Mathf.Clamp((targetAV.z - av.z) / TurnAcceleration.z, -1, 1)
         );
 
-        var effectiveInput = (correctionInput + ControlInput);
+        var effectiveInput = (correctionInput + ControlInput) * gForceScaling;
 
         EffectiveInput = new Vector3(
             Mathf.Clamp(effectiveInput.x, -1, 1),
@@ -373,6 +388,8 @@ public class New_AirplanePhisics : MonoBehaviour
             Mathf.Clamp(effectiveInput.z, -1, 1)
         );
     }
+
+   
 
     float CalculateSteering(float dt,float angularVelocity, float targetVelocity, float acceleration)
     {
@@ -383,7 +400,16 @@ public class New_AirplanePhisics : MonoBehaviour
     }
     #endregion
 
+    void LimitOverSpeed()
+    {
+        if (LocalVelocity.z > MaxSpeed&&MaxSpeed!=0)
+        {
+            rig.AddRelativeForce((maxThrust*LocalVelocity.z)* Vector3.back);
+        }
 
+
+
+    }
 
 
     void RandomMovements()

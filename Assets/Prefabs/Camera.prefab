@@ -164,6 +164,10 @@ PrefabInstance:
       propertyPath: m_AllowMSAA
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 832172701614971535, guid: 800b6577e1f467144b093f9873a9c391, type: 3}
+      propertyPath: m_ForceIntoRT
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2457880414014053912, guid: 800b6577e1f467144b093f9873a9c391, type: 3}
       propertyPath: pov
       value: 

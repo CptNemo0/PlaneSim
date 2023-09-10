@@ -20,6 +20,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField] private Transform LOOKAT;
     [Space]
     [SerializeField] private float X, Y;
+    
     private void Start()
     {
         pov = GameObject.FindGameObjectWithTag("Player").transform;
@@ -46,7 +47,7 @@ public class CameraScript : MonoBehaviour
             currentXRotation = Mathf.Clamp(currentXRotation, minXRotation, maxXRotation);
             Vector3 rotation = new Vector3(currentXRotation, currentYRotation, 0);
             Parent.rotation = Quaternion.Euler(rotation);
-            Vector3 multiplier = pov.GetComponent<New_AirplanePhisics>().Velocity;
+            
         Vector2 rot = new Vector2(mouseX, mouseY);
 
 
@@ -55,7 +56,7 @@ public class CameraScript : MonoBehaviour
            
         
 
-        speeds = Fspeed + multiplier.magnitude;
+       
 
 
         //rotation.z = 0;           
@@ -69,22 +70,20 @@ public class CameraScript : MonoBehaviour
         currentYRotation = Mathf.LerpAngle(currentYRotation,Y , (Fspeed/7 )* Time.deltaTime);
         LOOKAT.position = Parent.position;
 
-       
+         
+        transform.localPosition = Offset;
+        Parent.position = pov.localPosition;
+
     }
 
 
     //Unity functions
     void FixedUpdate()
     {
-      
-       
-       
 
        
-           
-           
-            Parent.localPosition = Vector3.Lerp(Parent.localPosition, pov.localPosition, Time.fixedDeltaTime * speeds);
-        transform.localPosition = Offset;
+
+        //Parent.position = Vector3.MoveTowards(Parent.position, pov.localPosition, 500* pov.GetComponent<New_AirplanePhisics>().LocalVelocity.z);
 
        
         
