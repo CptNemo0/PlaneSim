@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3689020757287031090}
   - component: {fileID: 3689020757287031100}
-  - component: {fileID: -239246432099092795}
+  - component: {fileID: 7839820328531956897}
   m_Layer: 5
   m_Name: YawBar
   m_TagString: Untagged
@@ -201,7 +201,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5424041610331883722}
   m_CullTransparentMesh: 1
---- !u!114 &-239246432099092795
+--- !u!114 &7839820328531956897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5424041610331883722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff81e2806149372498114ffefb567859, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a64e29e0aefaa0459f74bd488273d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   texts:

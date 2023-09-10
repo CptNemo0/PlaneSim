@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pitchHorizonPrefab: {fileID: 8321847135958972924, guid: 3b6f6b784c0e73442bbfb970336cf744, type: 3}
-  pitchPositivePrefab: {fileID: 983441870417178835, guid: 32cb84aad6dfb5640adbd09b54351d20, type: 3}
+  pitchPositivePrefab: {fileID: 983441870417178835, guid: 86475a28faad8914d875fe03bb6008f5, type: 3}
   pitchNegativePrefab: {fileID: 8576715315724359165, guid: 26457137cd30d2e4ebc6b16df18ab621, type: 3}
   barInterval: 5
   range: 90

@@ -12,9 +12,9 @@ public class YawLadder : MonoBehaviour
     {
         public RectTransform transform;
         public float angle;
-        public PitchBar bar;
+        public YawBar bar;
 
-        public Bar(RectTransform transform, float angle, PitchBar bar)
+        public Bar(RectTransform transform, float angle, YawBar bar)
         {
             this.transform = transform;
             this.angle = angle;
@@ -41,8 +41,26 @@ public class YawLadder : MonoBehaviour
     {
         var barGO = Instantiate(prefab, transform);
         var barTransform = barGO.GetComponent<RectTransform>();
-        var bar = barGO.GetComponent<PitchBar>();
-        bar.SetNumber(angle);
+        var bar = barGO.GetComponent<YawBar>();
+        switch(angle)
+        {
+            case 0:
+                bar.SetText(angle, "N");
+                break;
+            case 90:
+                bar.SetText(angle, "E");
+                break;
+            case 180:
+                bar.SetText(angle, "S");
+                break;
+            case 270:
+                bar.SetText(angle, "W");
+                break;
+            default:
+                bar.SetText(angle, string.Empty);
+                break;
+        }
+        
         bars.Add(new Bar(barTransform, angle, bar));
     }
 
@@ -72,16 +90,9 @@ public class YawLadder : MonoBehaviour
         transform = GetComponent<RectTransform>();
         bars = new List<Bar>();
 
-        for (int i = -range; i <= range; i++)
+        for (int i = 0; i < 360; i += 10)
         {
-            if (i % barInterval != 0)
-            {
-                continue;
-            }
-            else
-            {
-                CreateBar(i, barYawPrefab);
-            }
+            CreateBar(i, barYawPrefab);
         }
     }
 
