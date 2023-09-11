@@ -136,7 +136,6 @@ public class YawLadder : MonoBehaviour
         foreach(var bar in bars) 
         {
             float angle = Mathf.DeltaAngle(yaw, bar.angle);
-            print(ConvertAngle(yaw));
             float position = GetPosition(ConvertAngle(angle));
             Deg_Text.text = string.Format("{0:F0}°",yaw);
             if (Mathf.Abs(angle) < 90f && position >= transform.rect.xMin && position <= transform.rect.xMax)
