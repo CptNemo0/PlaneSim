@@ -900,6 +900,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4295757680539450318, guid: bfbc584d0aee83d4fbfb6c6009ce4869, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6215939734106571180, guid: bfbc584d0aee83d4fbfb6c6009ce4869, type: 3}
       propertyPath: far clip plane
       value: 1000
@@ -1658,11 +1662,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1533138774971689, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1533138982629139, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4362999705196410, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
       propertyPath: m_RootOrder
@@ -2090,6 +2094,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8278789231403431238, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8729622442999927691, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}
+      propertyPath: MinT
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8729622442999927691, guid: c47ef2616e60cab43a4fc39b62826fdb, type: 3}

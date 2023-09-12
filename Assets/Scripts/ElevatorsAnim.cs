@@ -128,7 +128,7 @@ public class ElevatorsAnim : MonoBehaviour
         }*/
 
         #region Trails
-        if (physics.localGForce.z < -2)
+        if(physics.localGForce.y > 15 || physics.localGForce.z < -5)
         {
             if(trailRenderers.Count == 2)
             {
