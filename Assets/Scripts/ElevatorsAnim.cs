@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.VFX.Utility;
 using UnityEngine.VFX;
+using System.Collections.Generic;
+using UnityEditor;
 
 public class ElevatorsAnim : MonoBehaviour
 {
@@ -38,8 +40,16 @@ public class ElevatorsAnim : MonoBehaviour
     [SerializeField] private float MinSize1, MaxSize1;
     [SerializeField] private float MinLength, MaxLength;
 
+    [Space]
+    [Header("Rendering trails")]
+    [SerializeField] public Transform[] trailPositions;
+    [SerializeField] public GameObject trailPrefab;
+    private List<GameObject> trailRenderers;
 
-
+    private void Awake()
+    {
+        trailRenderers = new List<GameObject>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -98,9 +108,7 @@ public class ElevatorsAnim : MonoBehaviour
             else { vfx.gameObject.SetActive(!false); }
         }
        
- 
-        
-        
+
         float realValueLumen = Mathf.Lerp(MinLumen, MaxLumen, Throttle);//Sets Min lumen when throttle at 0 and max when throttle at 100
         for (int i = 0; i < AreaLights.Length; i++)
         {
@@ -117,12 +125,44 @@ public class ElevatorsAnim : MonoBehaviour
             float Throttle = physics.Throttle;
             float realValue_0 = Mathf.Lerp(MinLumen, MaxLumen, Throttle);//Sets Min lumen when throttle at 0 and max when throttle at 100
             Lights.intensity = realValue_0;
-
-
-
-
-
         }*/
 
+        #region Trails
+        if (physics.localGForce.z < -2)
+        {
+            if(trailRenderers.Count == 2)
+            {
+                //Debug.Log("1st if");
+            }
+            else
+            {
+                //Debug.Log("1st else");
+                for (int i = 0; i < trailPositions.Length; i++)
+                {
+                    GameObject newTrailRenderer = Instantiate(trailPrefab, trailPositions[i]);
+                    newTrailRenderer.transform.parent = trailPositions[i];
+                    trailRenderers.Add(newTrailRenderer);
+                }
+            }
+        }
+        else
+        {
+            if(trailRenderers.Count == 2)
+            {
+                //Debug.Log("2nd if");
+                for (int i = 0;i < trailRenderers.Count; i++)
+                {
+                    trailRenderers[i].transform.parent = null;
+                    
+                }
+                trailRenderers.Clear();
+            }
+            else
+            {
+                //Debug.Log("2nd else");
+            }
+        }
+
+        #endregion
     }
 }
