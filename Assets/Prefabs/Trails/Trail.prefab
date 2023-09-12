@@ -90,7 +90,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 3
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -99,7 +99,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.16418457
+        value: 0.04814148
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -107,14 +107,50 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.16938022
-        value: 0.7462692
-        inSlope: 0
-        outSlope: 0
+        time: 0.052493908
+        value: 0.30091453
+        inSlope: 8.710617
+        outSlope: 8.710617
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.5735113
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.080962256
+        value: 0.659957
+        inSlope: 4.042598
+        outSlope: 4.042598
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.12432924
+        value: 0.89175844
+        inSlope: 1.6562362
+        outSlope: 1.6562362
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.20917968
+        value: 0.9838383
+        inSlope: -1.7187057
+        outSlope: -1.7187057
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.5293623
+      - serializedVersion: 3
+        time: 0.43431568
+        value: 0.9377029
+        inSlope: 1.3112507
+        outSlope: 1.3112507
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.13610432
       - serializedVersion: 3
         time: 0.75242645
         value: 0.59701574
@@ -138,33 +174,33 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0.88235295}
+      key1: {r: 1, g: 1, b: 1, a: 0.88235295}
+      key2: {r: 1, g: 1, b: 1, a: 0.7372549}
+      key3: {r: 0, g: 0, b: 0, a: 0.48235294}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 0
+      ctime1: 44333
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
+      atime1: 32189
+      atime2: 46453
+      atime3: 65535
       atime4: 0
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumColorKeys: 3
+      m_NumAlphaKeys: 4
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0

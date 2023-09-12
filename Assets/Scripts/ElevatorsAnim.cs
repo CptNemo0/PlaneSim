@@ -49,6 +49,8 @@ public class ElevatorsAnim : MonoBehaviour
     [Space]
     [Header("Rendering trails")]
     [SerializeField] public GameObject[] tailRings;
+    [SerializeField] private Transform RingsParent;
+    [SerializeField] private Vector3[] RingsParentPos;
     [SerializeField] public float[] initialPositions;
     [SerializeField] public float MinY;
 
@@ -57,6 +59,7 @@ public class ElevatorsAnim : MonoBehaviour
     private void Awake()
     {
         trailRenderers = new List<GameObject>();
+        RingsParentPos[0] = RingsParent.localPosition;
     }
     // Start is called before the first frame update
     void Start()
@@ -138,6 +141,10 @@ public class ElevatorsAnim : MonoBehaviour
             tailRings[i].transform.GetChild(0).GetComponent<Light>().intensity = realValueLumen;  
         }
 
+        Vector3 newpos = Vector3.Lerp(RingsParentPos[1], RingsParentPos[0], Throttle);
+        RingsParent.localPosition = newpos;
+
+
         /*
         foreach(Light Lights in AreaLights){
 
@@ -156,7 +163,7 @@ public class ElevatorsAnim : MonoBehaviour
         */
 
         #region Trails
-        if (physics.localGForce.y > 15 || physics.localGForce.z < -5)
+        if (physics.localGForce.y > 15 || physics.localGForce.z < -5|| physics.localGForce.z > 10)
         {
             if(trailRenderers.Count == 2)
             {
