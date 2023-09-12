@@ -25,7 +25,7 @@ public class New_AirplanePhisics : MonoBehaviour
     [SerializeField] public  Vector3 Velocity;
     [SerializeField] private Vector3 lastVelocity;
     [SerializeField] public Vector3 LocalVelocity;
-    [SerializeField] private Vector3 LocalAngularVelocity;
+    [SerializeField] public Vector3 LocalAngularVelocity;
     [SerializeField] public  Vector3 localGForce;
     [Space]
     [Header("DRAG")]

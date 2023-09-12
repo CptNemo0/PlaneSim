@@ -153,7 +153,10 @@ public class ElevatorsAnim : MonoBehaviour
                 for (int i = 0;i < trailRenderers.Count; i++)
                 {
                     trailRenderers[i].transform.parent = null;
-                    
+                    trailRenderers[i].transform.GetComponent<Trail>().rig.isKinematic = false;
+                    trailRenderers[i].transform.GetComponent<Trail>().rig.velocity = physics.Velocity;
+                    //trailRenderers[i].transform.GetComponent<Trail>().rig.angularVelocity = physics.LocalAngularVelocity;
+                    trailRenderers[i].transform.GetComponent<Trail>().decelerate = true;
                 }
                 trailRenderers.Clear();
             }
