@@ -93,7 +93,7 @@ public class ElevatorsAnim : MonoBehaviour
 
             if (Throttle == 0)
             {
-                //vfx.gameObject.SetActive(false);
+                vfx.gameObject.SetActive(false);
             }
             else { vfx.gameObject.SetActive(!false); }
         }
