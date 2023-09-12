@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.VFX.Utility;
+using UnityEngine.VFX;
 
 public class ElevatorsAnim : MonoBehaviour
 {
@@ -27,7 +29,15 @@ public class ElevatorsAnim : MonoBehaviour
 
     [Space]
     public ParticleSystem[] Gf_particles;
-    
+    [Space]
+    [SerializeField] private VisualEffect[] ThrustVFX;
+    [SerializeField] private Light[] AreaLights;
+    [SerializeField] private float MinLumen, MaxLumen;
+
+    [SerializeField] private float MinSize0, MaxSize0;
+    [SerializeField] private float MinSize1, MaxSize1;
+    [SerializeField] private float MinLength, MaxLength;
+
 
 
     // Start is called before the first frame update
@@ -70,11 +80,49 @@ public class ElevatorsAnim : MonoBehaviour
             }
             
         }
+        float Throttle = physics.Throttle;
+        float realValue_0 = Mathf.Lerp(MinSize0, MaxSize0, Throttle);//Finds the real value for Size_0, from min to max depending on trottle position
+        float realValue_1 = Mathf.Lerp(MinSize1, MaxSize1, Throttle);//Finds the real value for Size_1, from min to max depending on trottle position
+        float realValueLength = Mathf.Lerp(MinLength, MaxLength, Throttle);//Finds the real value for Size_1, from min to max depending on trottle position
+
+
+        foreach (VisualEffect vfx in ThrustVFX){
+         vfx.SetFloat("Size_0", realValue_0);
+            vfx.SetFloat("Size_1", realValue_1);
+            vfx.SetFloat("Length", realValueLength);
+
+            if (Throttle == 0)
+            {
+                //vfx.gameObject.SetActive(false);
+            }
+            else { vfx.gameObject.SetActive(!false); }
+        }
+       
+ 
         
+        
+        float realValueLumen = Mathf.Lerp(MinLumen, MaxLumen, Throttle);//Sets Min lumen when throttle at 0 and max when throttle at 100
+        for (int i = 0; i < AreaLights.Length; i++)
+        {
+
+            
+            AreaLights[i].intensity = realValueLumen;
+
+
+        }
+
+        /*
+        foreach(Light Lights in AreaLights){
+
+            float Throttle = physics.Throttle;
+            float realValue_0 = Mathf.Lerp(MinLumen, MaxLumen, Throttle);//Sets Min lumen when throttle at 0 and max when throttle at 100
+            Lights.intensity = realValue_0;
 
 
 
 
+
+        }*/
 
     }
 }
