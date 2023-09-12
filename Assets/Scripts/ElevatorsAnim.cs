@@ -46,6 +46,14 @@ public class ElevatorsAnim : MonoBehaviour
     [SerializeField] public GameObject trailPrefab;
     private List<GameObject> trailRenderers;
 
+    [Space]
+    [Header("Rendering trails")]
+    [SerializeField] public GameObject[] tailRings;
+    [SerializeField] public float[] initialPositions;
+    [SerializeField] public float MinY;
+
+    [SerializeField] public Material ringMaterial;
+
     private void Awake()
     {
         trailRenderers = new List<GameObject>();
@@ -59,14 +67,12 @@ public class ElevatorsAnim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        #region Animation
         ElevatorDeg = physics.ControlInput.x*E_max;
         EL = Mathf.Lerp(EL, ElevatorDeg, 25 * Time.deltaTime);
 
         Elevators[0].localRotation = Quaternion.Euler(EL, 0, 90);
         Elevators[1].localRotation = Quaternion.Euler(EL, 0, -90);
-
-
 
         FlapsDeg = physics.ControlInput.z * F_max;
         FL = Mathf.Lerp(FL, FlapsDeg, 25 * Time.deltaTime);
@@ -79,7 +85,9 @@ public class ElevatorsAnim : MonoBehaviour
 
 
         Airbrake.localRotation = Quaternion.Euler(Airbrake_Deg, 0, 0);
+        #endregion
 
+        #region Prticles
         foreach (ParticleSystem p in Gf_particles)
         {
             if (physics.localGForce.y > 15|| physics.localGForce.z < -5)
@@ -88,16 +96,18 @@ public class ElevatorsAnim : MonoBehaviour
             }
             else { p.Stop(); 
             }
-            
         }
+        #endregion
+
+        #region Nozzle 
         float Throttle = physics.Throttle;
         float realValue_0 = Mathf.Lerp(MinSize0, MaxSize0, Throttle);//Finds the real value for Size_0, from min to max depending on trottle position
         float realValue_1 = Mathf.Lerp(MinSize1, MaxSize1, Throttle);//Finds the real value for Size_1, from min to max depending on trottle position
         float realValueLength = Mathf.Lerp(MinLength, MaxLength, Throttle);//Finds the real value for Size_1, from min to max depending on trottle position
 
-
-        foreach (VisualEffect vfx in ThrustVFX){
-         vfx.SetFloat("Size_0", realValue_0);
+        foreach (VisualEffect vfx in ThrustVFX)
+        {
+            vfx.SetFloat("Size_0", realValue_0);
             vfx.SetFloat("Size_1", realValue_1);
             vfx.SetFloat("Length", realValueLength);
 
@@ -105,10 +115,12 @@ public class ElevatorsAnim : MonoBehaviour
             {
                 vfx.gameObject.SetActive(false);
             }
-            else { vfx.gameObject.SetActive(!false); }
+            else 
+            { 
+                vfx.gameObject.SetActive(!false); 
+            }
         }
        
-
         float realValueLumen = Mathf.Lerp(MinLumen, MaxLumen, Throttle);//Sets Min lumen when throttle at 0 and max when throttle at 100
         for (int i = 0; i < AreaLights.Length; i++)
         {
@@ -119,6 +131,13 @@ public class ElevatorsAnim : MonoBehaviour
 
         }
 
+        for(int i = 0; i < tailRings.Length; i++) 
+        {
+            float newY = Mathf.Lerp(MinY, initialPositions[i], Throttle);
+            tailRings[i].transform.localPosition = Vector3.Scale(tailRings[i].transform.localPosition, new Vector3(1f, 0f, 1f)) + new Vector3(0f, newY, 0f);
+            tailRings[i].transform.GetChild(0).GetComponent<Light>().intensity = realValueLumen;  
+        }
+
         /*
         foreach(Light Lights in AreaLights){
 
@@ -126,9 +145,18 @@ public class ElevatorsAnim : MonoBehaviour
             float realValue_0 = Mathf.Lerp(MinLumen, MaxLumen, Throttle);//Sets Min lumen when throttle at 0 and max when throttle at 100
             Lights.intensity = realValue_0;
         }*/
+        #endregion
+        
+        /*
+        #region Opacity
+        float newAlpha = Mathf.Lerp(0.0f, 255.0f, Throttle);
+        Color newColor = new Color(0.0f, 0.0f, 0.0f, newAlpha);
+        ringMaterial.????????
+        #endregion
+        */
 
         #region Trails
-        if(physics.localGForce.y > 15 || physics.localGForce.z < -5)
+        if (physics.localGForce.y > 15 || physics.localGForce.z < -5)
         {
             if(trailRenderers.Count == 2)
             {
