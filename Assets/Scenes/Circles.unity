@@ -276,7 +276,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4295757680539450318, guid: bfbc584d0aee83d4fbfb6c6009ce4869, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6215939734106571180, guid: bfbc584d0aee83d4fbfb6c6009ce4869, type: 3}
       propertyPath: far clip plane
@@ -1966,6 +1966,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1974208684}
     m_Modifications:
+    - target: {fileID: 61232237, guid: aada9196995aea047a4cf377a138c936, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886652361, guid: aada9196995aea047a4cf377a138c936, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1271171799913606031, guid: aada9196995aea047a4cf377a138c936, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
