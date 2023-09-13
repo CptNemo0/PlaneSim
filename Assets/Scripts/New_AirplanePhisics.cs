@@ -12,13 +12,7 @@ public class New_AirplanePhisics : MonoBehaviour
     [Header("KEY INPUTS")]
     public KeyCode IncreaseThrottle, DecreaseThrottle;
     public KeyCode AirBrakes_KEY;
-    
-    // Start is called before the first frame update
-    [Space]
-    [Header("COMPONENTS")]
-    Rigidbody rig;
-
-
+    public Rigidbody rig{ get; private set; }
     [Header("FORCES")]
     [Space]
     [Header("VECTORS")]

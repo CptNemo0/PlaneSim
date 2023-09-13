@@ -8,12 +8,12 @@ public class Indicator : MonoBehaviour
 
     [Header("No rotate distance")]
     [SerializeField] public int noRotateDistance;
-    private GameObject goal;
+    [SerializeField]private GameObject goal;
 
     #endregion
 
     #region Properties
-    public GameObject Goal { get => goal; set => goal = value; }
+    [SerializeField] public GameObject Goal { get => goal; set => goal = value; }
     #endregion
 
     

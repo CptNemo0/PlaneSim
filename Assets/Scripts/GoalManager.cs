@@ -32,12 +32,12 @@ public class GoalManager : MonoBehaviour
     #endregion
 
     #region Lists
-    private List<GameObject> goals = new List<GameObject>();
+   [SerializeField] private List<GameObject> goals = new List<GameObject>();
     private List<Vector3> points = new List<Vector3>();
     #endregion
 
     #region Properties
-    public List<GameObject> Goals { get => goals; set => goals = value; }
+    [SerializeField]public List<GameObject> Goals { get => goals; set => goals = value; }
     #endregion 
 
     

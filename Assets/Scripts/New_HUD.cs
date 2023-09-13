@@ -20,6 +20,11 @@ public class New_HUD : MonoBehaviour
     [Space]  
     [SerializeField] TextMeshProUGUI AirSpeed_Text;
     [SerializeField] TextMeshProUGUI Altitude_Text;
+    [Space]
+    [Header("Lock ON")]
+    [SerializeField] private GoalManager Goal_Manager;
+    [SerializeField] private Transform TargetB;
+    [SerializeField] private Transform Goal;
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,6 +32,7 @@ public class New_HUD : MonoBehaviour
         this.cam = Camera.main;
         this.Plane = GameObject.FindGameObjectWithTag("Player").transform;
         SetPlane(Plane.GetComponent<New_AirplanePhisics>());
+        
     }
 
     // Update is called once per frame
@@ -39,9 +45,42 @@ public class New_HUD : MonoBehaviour
 
         UpdateHUDCenter();
         UpdateVelocityMarker();
+
+
+        if (Goal_Manager)
+        {
+            if (Goal_Manager.Goals.Count > 0)
+            {
+                Goal = Goal_Manager.Goals[0].gameObject.GetComponent<Transform>();
+            }
+            else
+            {
+                return;
+            }
+        }
+        else if (GameObject.FindGameObjectWithTag("GoalManager").GetComponent<GoalManager>())
+        {
+            Goal_Manager = GameObject.FindGameObjectWithTag("GoalManager").GetComponent<GoalManager>();
+        }
+        else
+        {
+
+            return;
+        }   
+
+
+
+            
         
+        
+       
     }
 
+     void Update()
+    {
+        GoalsHUD();
+        
+    }
     public void SetPlane(New_AirplanePhisics plane)
     {
         this.plane = plane;
@@ -123,4 +162,53 @@ public class New_HUD : MonoBehaviour
         var screenSpace = cam.WorldToScreenPoint(worldSpace);
         return screenSpace - new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2);
     }
+
+
+    void GoalsHUD()
+    {
+
+        if (Goal)
+        {         
+            TargetB.position = cam.WorldToScreenPoint(Goal.position);
+
+            var hudPos = TransformToHUDSpace(Goal.position);
+
+            if (hudPos.z>0)
+            {
+                TargetB.gameObject.SetActive(true);
+            }
+            else
+            {
+                TargetB.gameObject.SetActive(false);
+            }
+       }           
+        else
+        {
+            return;
+         }
+
+    }
+
+
+
+    bool Visible(Camera c, Transform target)
+    {
+
+        var planes_ = GeometryUtility.CalculateFrustumPlanes(c);
+        var point = target.position;
+
+
+        foreach(var plane_ in planes_)
+        {
+            if (plane_.GetDistanceToPoint(point) < 0)
+            {
+                return false;
+            }
+
+        }
+        return true;
+
+    }
+
+
 }
